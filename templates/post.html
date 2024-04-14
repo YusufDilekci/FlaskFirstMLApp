@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block head %}
+
+{% endblock %}
+
+{% block body %}
+
+<h1>HEY {{name}}</h1>
+<div>
+    <h1>{{ post[0]['title'] }}</h1>
+    <h2>{{ post[0]['subtitle'] }}</h2>
+    <p>{{ post[0]['body'] }}</p>
+</div>
+{% endblock %}

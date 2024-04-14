@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block head %}
+
+{% endblock %}
+
+{% block body %}
+
+<h1>My Blog</h1>
+{% for p in post_list %}
+    <div>
+        <h1>{{ p['title'] }}</h1>
+        <h2>{{ p['subtitle'] }}</h2>
+        <a href="{{ url_for('get_post_by_id', id= p['id']) }}">Read</a>  
+    </div>
+{% endfor %}
+{% endblock %}

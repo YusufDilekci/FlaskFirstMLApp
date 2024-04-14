@@ -1,0 +1,55 @@
+
+
+{% extends 'base.html' %}
+
+{% block head %}
+
+{% endblock %}
+
+{% block body %}
+
+<h1>CAT VS DOGS</h1>
+
+<div class="d-flex justify-content-center">
+    <div class="mb-3">
+        <label for="formFile" class="form-label">Default file input example</label>
+        <input class="form-control" type="file" id="formFile" accept="image/*" onchange="loadFile(event)">
+        <img id="output" width="100px" height="100px" style="display: none;"/>
+        <div id="result"></div> 
+    </div>
+</div>
+
+
+<script>
+    var loadFile = function(event) {
+
+        var files = event.target.files;
+        var output = $('#output');
+ 
+        output.attr('src', URL.createObjectURL(files[0]));
+        output.on('load', function() {
+            URL.revokeObjectURL(output.attr('src'));
+        });
+        document.getElementById('output').style.display = 'block';
+
+        var fd = new FormData();
+        fd.append('file', files[0]);
+
+        $.ajax({
+            type: 'POST',
+            url: "{{ url_for('classify_image') }}",
+            data: fd,
+            processData: false,
+            contentType: false,
+            success: function(response) {
+                $('#result').text(response.prediction);
+            },
+            error: function(xhr, status, error) {
+                console.error('Error:', error);
+            }
+        });
+
+    };
+
+</script>
+{% endblock %}

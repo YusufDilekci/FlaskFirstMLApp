@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+{% from "/fragments/_formhelpers.html" import render_field %}							
+
+{% block head %}
+
+<link href="/static/css/contact.css" rel="stylesheet">
+{% endblock %}
+
+{% block body %}
+
+<div class="container contact">
+	<div class="row">
+		<div class="col-md-3 entry">
+			<div class="contact-info">
+				<img src="https://image.ibb.co/kUASdV/contact-image.png" alt="image"/>
+				<h2>Contact Us</h2>
+				<h4>We would love to hear from you !</h4>
+			</div>
+		</div>
+		<div class="col-md-9">
+			<div class="contact-form">
+			<form method="post" action="{{url_for('contact')}}" novalidate>
+
+				<dl>
+					{{ render_field(form.fname) }}
+					{{ render_field(form.lname) }}
+					{{ render_field(form.email) }}
+					{{ render_field(form.comment) }}
+					
+				</dl>
+				<button type="submit" class="btn btn-primary">Submit</button>
+			</form>
+
+			</div>
+		</div>
+	</div>
+</div>
+
+{% endblock %}

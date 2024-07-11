@@ -15,4 +15,4 @@ def predict_model(filename):
     images = np.vstack([x])
     prediction = new_model.predict(images, batch_size=10)[0,0]
     result = round(prediction, 2)
-    return f"Bu {1 - result} oraninda bir kedidir." if prediction < 0.5 else f"Bu {result} oraninda bir köpektir." 
+    return f"Bu bir kedidir." if prediction < 0.5 else f"Bu bir köpektir." 
